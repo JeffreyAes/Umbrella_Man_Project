@@ -1,18 +1,144 @@
-html {
-  font-size: 14px;
-}
+@keyframes flicker {
+  0% {
+    filter: brightness(1); }
+  90% {
+    filter: brightness(1); }
+  95% {
+    filter: brightness(1.75); }
+  100% {
+    filter: brightness(1); } }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
+@keyframes moveRight {
+  0% {
+    left: 0; }
+  50% {
+    left: 90%; }
+  100% {
+    left: 0; } }
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  /* instead of making border-box global
+    make it inheritable, to make it easier to change.  */ }
 
 html {
-  position: relative;
-  min-height: 100%;
-}
+  /* changes the default browser font size
+    to make converting px to rem easier math wise */
+  font-size: 62.5%;
+  /* divide the fontsize you want by 16
+    in this case 10/16 = 62.5 */ }
 
 body {
-  margin-bottom: 60px;
-}
+  background-color: #000; }
+
+.btn, .btn:link, .btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1.5rem 4rem;
+  display: inline-block;
+  border-radius: 10rem;
+  /* transition goes on the element, not the hover property  */
+  transition: all .2s;
+  position: relative;
+  font-size: 1.6rem;
+  border: none;
+  cursor: pointer;
+  animation: moveRight 15s infinite; }
+
+.btn:hover {
+  transform: translateY(-0.3rem);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
+
+.btn::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  background-color: inherit;
+  opacity: 0; }
+
+.btn:active, .btn:focus {
+  outline: none;
+  transform: translateY(-0.1rem);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); }
+
+.btn--white {
+  background-color: #fff;
+  color: #777; }
+  .btn--white::after {
+    background-color: #fff; }
+
+.btn--green {
+  background-color: #e22389;
+  color: #fff; }
+  .btn--green::after {
+    background-color: #e22389; }
+
+.btn::after {
+  /* content is required, at least leave it empty, because nothing will appear without it. */
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 10rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  /* since theres a hover as a child of this after:
+    transition goes here because it's technically the parent... */
+  transition: all .4s; }
+
+.btn--animated {
+  animation: moveInBottom .5s ease-out .75s;
+  /* fill-mode: backwards:
+    applies the animation styling at 0% before the delay */
+  animation-fill-mode: backwards; }
+
+.btn-text:link, .btn-text:visited {
+  font-size: 1.6rem;
+  color: #e22389;
+  display: inline-block;
+  text-decoration: none;
+  border-bottom: 1px solid #e22389;
+  padding: 3px;
+  transform: all .2s; }
+
+.btn-text:hover {
+  background-color: #e22389;
+  color: #fff;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px); }
+
+.btn-text:active {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  transform: translateY(0); }
+
+.center-graphic {
+  height: 100vh;
+  position: relative; }
+  .center-graphic__bg {
+    height: 46rem;
+    width: 46rem;
+    border-radius: 50%;
+    background-image: radial-gradient(#333, black);
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: .3;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100; }
+    .center-graphic__bg:hover {
+      background-image: radial-gradient(#e22389, black);
+      opacity: .1; }
+  .center-graphic__composition {
+    opacity: 1;
+    width: 50rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: flicker 5s infinite; }

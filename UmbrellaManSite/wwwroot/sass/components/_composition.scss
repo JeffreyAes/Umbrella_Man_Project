@@ -1,0 +1,31 @@
+.center-graphic {
+    height: 100vh;
+    position: relative;
+
+    &__bg {
+        height: 46rem;
+        width: 46rem;
+        border-radius: 50%;
+        background-image: radial-gradient($color-grey-dark-3, black);
+        // background-size: 50rem;
+        background-repeat: no-repeat;
+        background-position: center;
+        opacity: .3;
+        @include centerHorizontalVerticle;
+        z-index: 100;
+
+        &:hover {
+            background-image: radial-gradient($color-primary, black);
+            opacity: .1;
+
+        }
+    }
+
+    &__composition {
+        opacity: 1;
+        width: 50rem;
+        @include centerHorizontalVerticle;
+        animation: flicker 5s infinite;
+    }
+
+}
