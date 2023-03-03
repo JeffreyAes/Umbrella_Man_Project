@@ -116,8 +116,11 @@ body {
   transform: translateY(0); }
 
 .center-graphic {
-  height: 100vh;
-  position: relative; }
+  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
   .center-graphic__bg {
     height: 46rem;
     width: 46rem;
@@ -125,7 +128,7 @@ body {
     background-image: radial-gradient(#333, black);
     background-repeat: no-repeat;
     background-position: center;
-    opacity: .3;
+    opacity: .4;
     position: absolute;
     top: 50%;
     left: 50%;

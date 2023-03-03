@@ -1,6 +1,7 @@
 .center-graphic {
-    height: 100vh;
+    // height: 100vh;
     position: relative;
+    @include centerHorizontalVerticle;
 
     &__bg {
         height: 46rem;
@@ -10,7 +11,7 @@
         // background-size: 50rem;
         background-repeat: no-repeat;
         background-position: center;
-        opacity: .3;
+        opacity: .4;
         @include centerHorizontalVerticle;
         z-index: 100;
 
